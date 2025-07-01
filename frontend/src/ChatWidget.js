@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { answerQuestion } from '../../backend/qa';
 
 function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
