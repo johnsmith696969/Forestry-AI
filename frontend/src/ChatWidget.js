@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { answerQuestion } from '../../backend/qa';
 
 function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,10 +15,10 @@ function ChatWidget() {
     setMessages([...messages, userMessage]);
 
     try {
-      const res = await fetch('http://localhost:3001/chat', {
+      const res = await fetch('https://forestry-ai-production-up.railway.app/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ question: input }),
       });
       const data = await res.json();
       setMessages(prev => [...prev, { from: 'bot', text: data.response }]);
